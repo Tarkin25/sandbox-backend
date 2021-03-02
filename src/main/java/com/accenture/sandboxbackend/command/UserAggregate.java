@@ -26,9 +26,7 @@ public class UserAggregate {
 
     @CommandHandler
     public UserAggregate(CreateUserCommand command) {
-        String id = UUID.randomUUID().toString();
-
-        AggregateLifecycle.apply(new UserCreatedEvent(id, command.getUsername()));
+        AggregateLifecycle.apply(new UserCreatedEvent(command.getUserId(), command.getUsername()));
     }
 
     @EventSourcingHandler
